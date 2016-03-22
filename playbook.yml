@@ -1,0 +1,10 @@
+---
+- hosts: all
+  user: cms
+  become: yes
+  gather_facts: True
+  vars_files:
+    - vars/defaults.yml
+  roles:
+    - basics
+    - monitoring

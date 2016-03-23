@@ -12,6 +12,8 @@
 
 - name: Set firewall rule for DNS
   ufw: rule=allow port=domain
+  tags:
+    - config
 
 - name: Set firewall rules for web traffic and SSH
   ufw: rule=allow port={{ item }} proto=tcp

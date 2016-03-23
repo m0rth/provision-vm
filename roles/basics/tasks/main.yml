@@ -48,17 +48,25 @@
     group: root
     mode: 0644
   register: common_timezone_config
+  tags:
+    - config
 
 - name: timezone - Set localtime to UTC
   file: src=/usr/share/zoneinfo/Etc/UTC dest=/etc/localtime
   when: common_timezone_config.changed
+  tags:
+    - config
 
 - name: timezone - reconfigure tzdata
   command: dpkg-reconfigure --frontend noninteractive tzdata
   when: common_timezone_config.changed
+  tags:
+    - config
 
 - name: Apticron email configuration
   template: src=apticron.conf.j2 dest=/etc/apticron/apticron.conf
+  tags:
+    - config
 
 - include: users.yml
 - include: ufw.yml

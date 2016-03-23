@@ -4,6 +4,8 @@
 - name: Copy monit master config file into place
   copy: src=etc_monit_monitrc dest=/etc/monit/monitrc
   notify: restart monit
+  tags:
+    - config
 
 - name: Monit Autostart
   service: name=monit enabled=yes
@@ -13,3 +15,5 @@
   with_items:
     - sshd
   notify: restart monit
+  tags:
+    - config

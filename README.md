@@ -28,3 +28,5 @@ Run the playbook:
 Replace `13.37.4.20` withe the IP or FQDN of your target machine.
 
 You can add `-vv` to the Ansible command to get a more verbose output!
+
+If you only want to reapply or change the configuration add `--tags config` to the command.

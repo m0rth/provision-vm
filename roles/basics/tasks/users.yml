@@ -1,5 +1,21 @@
 - name: Create main user account
   user: name={{ main_user_name }} state=present shell={{ main_user_shell }} groups=sudo
+  tags:
+    - config
 
 - name: Give main user account sudo power
   template: src=roles/basics/templates/sudoers.j2 dest=/etc/sudoers.d/sudoers owner=root group=root mode=0440 validate='visudo -cf %s'
+  tags:
+    - config
+
+- name: Clone Oh-my-ZSH
+  git:
+    repo=git://github.com/robbyrussell/oh-my-zsh.git
+    dest=/home/{{ main_user_name }}/.oh-my-zsh
+  tags:
+    - config
+
+- name: copy zshrc
+  cp: src=zshrc dest=/home/{{ main_user_name }}/.zshrc
+  tags:
+    - config

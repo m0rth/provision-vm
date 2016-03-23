@@ -1,15 +1,19 @@
-## provision-vm
-A Ansible Playbook for my basic vm setup
+* [What does this playbook do?](#what-does-this-playbook-do)
+* [Installation](#installation)
+  * [Prerequisites](#prerequisites)
+  * [Customize](#customize)
+  * [How to run the playbook](#how-to-run-the-playbook)
 
-TODO: what does the playbook install and change?
+### What does this playbook do?
+TODO
+### Installation
 #### Prerequisites
-A VPS or baremetal Server with Ubuntu 14.04 LTS or Debian Jessie
+A VPS or baremetal Server with Ubuntu 14.04 LTS or Debian 8 Jessie.
 
-Create a privileged User named `deploy` and add a SSH Key to enable passwordless SSH Login:
+Create a privileged User named `deploy` and add a SSH Key to enable SSH Login:
 
 ```
 useradd deploy
-passwd deploy
 mkdir /home/deploy
 mkdir /home/deploy/.ssh
 chmod 700 /home/deploy/.ssh
@@ -19,9 +23,10 @@ chown deploy:deploy /home/deploy -R
 echo 'deploy ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/deploy
 ```
 
+#### Customize
 Edit `vars/user.yml` to your liking.
 
-Run the playbook:
+#### How to run the playbook
 
 ```ansible-playbook playbook.yml -i "13.37.4.20, "```
 

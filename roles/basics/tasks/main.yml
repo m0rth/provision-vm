@@ -72,3 +72,4 @@
 - include: ufw.yml
 - include: security.yml
 - include: ntp.yml
+- include: google_auth.yml

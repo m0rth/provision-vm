@@ -1,10 +1,5 @@
 ---
-
-common_timezone: 'Etc/UTC'
-
-admin_email: "{{ main_user_name }}@{{ domain }}"
-
-main_user_shell: "/bin/zsh"
+## defaults. be carefull when editing below this line
 
 # ssh
 kex_algorithms: "diffie-hellman-group-exchange-sha256"
@@ -13,7 +8,6 @@ macs: "hmac-sha2-512,hmac-sha2-256,hmac-ripemd160"
 
 # ntp
 ntp_servers:
-  # use nearby ntp servers by default
   - 0.pool.ntp.org
   - 1.pool.ntp.org
   - 2.pool.ntp.org
@@ -21,11 +15,3 @@ ntp_servers:
 
 # collectd
 collectd_version: 5.4.1
-
-# common
-domain: TODO.com
-main_user_name: TODO
-
-
-friendly_networks:
-    - ""

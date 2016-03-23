@@ -7,6 +7,8 @@
 
 - name: Deny everything
   ufw: policy=deny
+  tags:
+    - config
 
 - name: Set firewall rule for DNS
   ufw: rule=allow port=domain
@@ -17,10 +19,25 @@
     - http
     - https
     - ssh
-    - 2812
+  tags:
+    - config
+
+- name: Set firewall rules for user defined tcp ports
+  ufw: rule=allow port={{ item }} proto=tcp
+  with_items: "{{ ufw_allowed_ports_tcp }}"
+  tags:
+    - config
+
+- name: Set firewall rules for user defined udp ports
+  ufw: rule=allow port={{ item }} proto=tcp
+  with_items: "{{ ufw_allowed_ports_udp }}"
+  tags:
+    - config
 
 - name: Enable UFW
   ufw: state=enabled
+  tags:
+    - config
 
 - name: Check config of ufw
   command: cat /etc/ufw/ufw.conf
@@ -30,3 +47,5 @@
 - name: Disable logging (workaround for known bug in Debian 7)
   ufw: logging=off
   when: "ansible_lsb['codename'] == 'wheezy' and 'LOGLEVEL=off' not in ufw_config.stdout"
+  tags:
+    - config

@@ -5,6 +5,9 @@
   copy: src=etc_monit_monitrc dest=/etc/monit/monitrc
   notify: restart monit
 
+- name: Monit Autostart
+  service: name=monit enabled=yes
+
 - name: Copy monit service config files into place
   copy: src=etc_monit_conf.d_{{ item }} dest=/etc/monit/conf.d/{{ item }}
   with_items:

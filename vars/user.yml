@@ -1,0 +1,22 @@
+---
+domain: example.com
+main_user_name: morth
+
+common_timezone: 'Etc/UTC'
+
+admin_email: "{{ main_user_name }}@{{ domain }}"
+
+main_user_shell: "/bin/zsh"
+
+# apt: additional apt packages that should be installed
+apt_packages:
+  - supervisor
+
+# ufw: additional allowed ports
+ufw_allowed_ports_tcp:
+  - 2812
+ufw_allowed_ports_udp:
+
+# this networks are friendly and will not trigger fail2ban
+friendly_networks:
+    - ""
